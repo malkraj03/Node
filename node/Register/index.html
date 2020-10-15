@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+<form>
+<div class="login-box">
+  <h1>Register</h1>
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input type="text" placeholder="Username" id="name">
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input type="text" placeholder="Email" id="email">
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input type="password" placeholder="Password" id="pass">
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input type="password" placeholder="Confirm Password" id="confirmpass">
+  </div>
+
+    <input class="get" type="button" class="btn" value="Register">
+</div>
+</form>
+<script>
+  $(document).ready(function(){
+    $(".get").click(function(){
+      $.getJSON("http://localhost:3600/getmethod",function(details){
+        $.each(details,function(i,info){
+          $.append(info)
+        })
+
+      })
+        
+    });
+  });
+</script>
+</body>
+</html>  

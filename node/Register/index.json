@@ -1,0 +1,58 @@
+[
+    {
+        "_id": "5f818c6dfda0041fa0610fd5",
+        "name": "malk",
+        "email": "malk@gmail.com",
+        "password": "malk",
+        "confirm_password": "malk",
+        "__v": 0
+    },
+    {
+        "_id": "5f818cf57303d1231cdfa011",
+        "name": "somesh",
+        "email": "soo@gmail.com",
+        "password": "soooo",
+        "confirm_password": "soooo",
+        "__v": 0
+    },
+    {
+        "_id": "5f81b62b760f9b18a407d35e",
+        "name": "somesh",
+        "email": "soo@gmail.com",
+        "password": "soooo",
+        "confirm_password": "soooo",
+        "__v": 0
+    },
+    {
+        "_id": "5f81b684b950f624a04ebb61",
+        "name": "somesh",
+        "email": "soo@gmail.com",
+        "password": "soooo",
+        "confirm_password": "soooo",
+        "__v": 0
+    },
+    {
+        "_id": "5f81b851b7b1792a50e4a659",
+        "name": "somesh",
+        "email": "soo@gmail.com",
+        "password": "soooo",
+        "confirm_password": "soooo",
+        "__v": 0
+    },
+    {
+        "_id": "5f81b9e0d79f9d2628f3462d",
+        "name": "somesh",
+        "email": "soo@gmail.com",
+        "password": "soooo",
+        "confirm_password": "soooo",
+        "__v": 0
+    },
+    {
+        "_id": "5f81d19186db471ab4514591",
+        "name": "yuvaraj",
+        "email": "yuva@gmail.com",
+        "password": "yuva",
+        "confirm_password": "yuva",
+        "__v": 0
+    }
+]
