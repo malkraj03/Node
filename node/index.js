@@ -2,7 +2,7 @@ var express = require('express')
 var bodyParser = require('body-parser')
 var mongoose = require('mongoose')
 var studentDetails = require('./detail')
-
+var cors = require('cors')
 var app = express()
 app.use(express.json())
 
@@ -18,7 +18,7 @@ app.use(bodyParser.json())
 
 app.get('/getmethod',async(req,res) =>{
     try{
-        const details = await studentDetails.find() 
+        var details = await studentDetails.find() 
         res.json(details)
     }
     catch(err){
@@ -26,18 +26,11 @@ app.get('/getmethod',async(req,res) =>{
     }
 })
 
-app.get('/:id', function(req, res) {
+app.get('/:id', async(req, res) =>{
     var id = req.params.id
-    studentDetails.findById(id)        
-        .lean().exec(function (err, results) {
-        if (err) return console.error(err)
-        try {
-            res.json(results)            
-        } catch (error) {
-            console.log("errror getting results")
-            console.log(error)
-        } 
-    })
+    var details = await studentDetails.findById(id)   
+    res.json(details)     
+    
 })
 
 

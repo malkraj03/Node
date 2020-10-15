@@ -13,39 +13,65 @@
   <h1>Register</h1>
   <div class="textbox">
     <i class="fas fa-user"></i>
-    <input type="text" placeholder="Username" id="name">
+    <input type="text" placeholder="Username" id="name" class="name">
   </div>
 
   <div class="textbox">
     <i class="fas fa-user"></i>
-    <input type="text" placeholder="Email" id="email">
+    <input type="text" placeholder="Email" id="email" class="email">
   </div>
 
   <div class="textbox">
     <i class="fas fa-lock"></i>
-    <input type="password" placeholder="Password" id="pass">
+    <input type="password" placeholder="Password" id="pass" class="password">
   </div>
 
   <div class="textbox">
     <i class="fas fa-lock"></i>
-    <input type="password" placeholder="Confirm Password" id="confirmpass">
+    <input type="password" placeholder="Confirm Password" id="confirmpass" class="confirmpass">
   </div>
 
-    <input class="get" type="button" class="btn" value="Register">
+    <input class="post" type="button"  value="submit">
+    <input class="get" type="button" value="Show">
 </div>
 </form>
+<ol>
+  
+</ol>
 <script>
   $(document).ready(function(){
-    $(".get").click(function(){
-      $.getJSON("http://localhost:3600/getmethod",function(details){
-        $.each(details,function(i,info){
-          $.append(info)
+      $(".post").click(function(){
+        let obj ={
+          name:$(".name").val(),
+          email:$(".email").val(),
+          password:$(".password").val(),
+          confirm_password:$(".confirmpass").val()
+        }
+        $.ajax({
+          method:"POST",
+          url:"http://localhost:3600/postmethod",
+          data:obj,
+          success:function(data){
+            alert("success")
+          },
+          error:function(){
+            alert("ERROR")
+          }
         })
-
       })
-        
-    });
-  });
+      $(".get").click(function(){
+        $.ajax({
+          method:"GET",
+          url:"http://localhost:3600/getmethod",
+          dataType:"json",
+        }).done(function(){
+          $.each(data,function(i,p){
+            $("ol").append("<li>"+p+"</li>")
+
+          })
+        })
+      })
+    })
 </script>
 </body>
 </html>  
