@@ -38,8 +38,7 @@ app.post("/postmethod",async(req,res) =>{
 var studentRequest = new studentDetails({
 name: req.body.name,
 email: req.body.email,
-password: req.body.password,
-confirm_password: req.body.confirm_password
+password: req.body.password
 })
 try{
     var data = await studentRequest.save()
@@ -48,7 +47,7 @@ try{
     res.send("Error ",err)
 }
 })
-app.listen(3600,(err) =>{
+app.listen(3800,(err) =>{
 if(err){
 console.log(err)
 }else{

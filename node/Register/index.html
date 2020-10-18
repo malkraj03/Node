@@ -13,22 +13,22 @@
   <h1>Register</h1>
   <div class="textbox">
     <i class="fas fa-user"></i>
-    <input type="text" placeholder="Username" id="name" class="name">
+    <input type="text" placeholder="Username" id="name" class="name" required>
   </div>
 
   <div class="textbox">
     <i class="fas fa-user"></i>
-    <input type="text" placeholder="Email" id="email" class="email">
+    <input type="text" placeholder="Email" id="email" class="email" required>
   </div>
 
   <div class="textbox">
     <i class="fas fa-lock"></i>
-    <input type="password" placeholder="Password" id="pass" class="password">
+    <input type="password" placeholder="Password" id="pass" class="password" required>
   </div>
 
   <div class="textbox">
     <i class="fas fa-lock"></i>
-    <input type="password" placeholder="Confirm Password" id="confirmpass" class="confirmpass">
+    <input type="password" placeholder="Confirm Password" id="confirmpass" class="confirmpass" required>
   </div>
 
     <input class="post" type="button"  value="submit">
@@ -47,22 +47,40 @@
           password:$(".password").val(),
           confirm_password:$(".confirmpass").val()
         }
-        $.ajax({
-          method:"POST",
-          url:"http://localhost:3600/postmethod",
-          data:obj,
-          success:function(data){
-            alert("success")
-          },
-          error:function(){
-            alert("ERROR")
+        if (obj.name != "" && obj.email != "" && obj.password != "" && obj.confirm_password != "")
+          {
+                  if (obj.password== obj.confirm_password)
+                  {
+                    let obj1 ={
+                          name:obj.name,
+                          email:obj.email,
+                          password:obj.password
+                    }
+                    $.ajax({
+                      method:"POST",
+                      url:"http://localhost:3800/postmethod",
+                      data:obj1,
+                      success:function(data){
+                        alert("success")
+                      },
+                      error:function(){
+                        alert("ERROR")
+                      }
+                    })
+                  }
+                  else{
+                    alert("password and confirm password must equal")
+                  }
+          }
+          else
+          {
+            alert("all feild should filled")
           }
         })
-      })
       $(".get").click(function(){
         $.ajax({
           method:"GET",
-          url:"http://localhost:3600/getmethod",
+          url:"http://localhost:3800/getmethod",
           dataType:"json",
         }).done(function(){
           $.each(data,function(i,p){
