@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+<form>
+<div class="login-box">
+  <h1>Register</h1>
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input type="text" placeholder="Username" id="name" class="name" required>
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-user"></i>
+    <input type="text" placeholder="Email" id="email" class="email" required>
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input type="password" placeholder="Password" id="pass" class="password" required>
+  </div>
+
+  <div class="textbox">
+    <i class="fas fa-lock"></i>
+    <input type="password" placeholder="Confirm Password" id="confirmpass" class="confirmpass" required>
+  </div>
+
+    <input class="post" type="button"  value="submit">
+    <input class="get" type="button" value="Show">
+</div>
+</form>
+<ol>
+  
+</ol>
+<script>
+  $(document).ready(function(){
+      $(".post").click(function(){
+        let obj ={
+          name:$(".name").val(),
+          email:$(".email").val(),
+          password:$(".password").val(),
+          confirm_password:$(".confirmpass").val()
+        }
+        if (obj.name != "" && obj.email != "" && obj.password != "" && obj.confirm_password != "")
+          { 
+            minlength = 4 
+            maxlength = 8 
+            if(obj.name.length >= minlength && obj.name.length <= maxlength)
+            { 
+              if(obj.password.length >= minlength && obj.password.length <= maxlength)
+              {  	
+                if (obj.password== obj.confirm_password)
+                {
+                 
+
+                      let obj1 ={
+                            name:obj.name,
+                            email:obj.email,
+                            password:obj.password
+                        }
+                
+                        $.ajax({
+                          method:"POST",
+                          url:"http://localhost:3800/formsubmit",
+                          data:obj1,
+                          success:function(data){
+                            if(result.code === 200){
+                              alert(result.message)
+                            }
+                            else{
+                              alert(result.message)
+                            }
+                          },
+                          error:function(){
+                            alert("ERROR")
+                          }
+                    })
+                  }
+                  else{
+                    alert("password and confirm password must equal")
+                  }
+                  }
+                else
+                  {  	
+	                  alert("Please enter Password between " +minlength+ " and " +maxlength+ " characters");  	
+                  }  
+                }
+            else
+            {  	
+	            alert("Please enter Name between " +minlength+ " and " +maxlength+ " characters");  	
+            }  
+          }
+          else
+          {
+            alert("all feild should filled")
+          }
+        })
+      $(".get").click(function(){
+        $.ajax({
+          method:"GET",
+          url:"http://localhost:3800/getdetails",
+          dataType:"json",
+        }).done(function(){
+          $.each(data,function(i,p){
+            $("ol").append("<li>"+p+"</li>")
+
+          })
+        })
+      })
+    })
+</script>
+</body>
+</html>  
