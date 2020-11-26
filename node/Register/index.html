@@ -48,29 +48,53 @@
           confirm_password:$(".confirmpass").val()
         }
         if (obj.name != "" && obj.email != "" && obj.password != "" && obj.confirm_password != "")
-          {
-                  if (obj.password== obj.confirm_password)
-                  {
-                    let obj1 ={
-                          name:obj.name,
-                          email:obj.email,
-                          password:obj.password
-                    }
-                    $.ajax({
-                      method:"POST",
-                      url:"http://localhost:3800/postmethod",
-                      data:obj1,
-                      success:function(data){
-                        alert("success")
-                      },
-                      error:function(){
-                        alert("ERROR")
-                      }
+          { 
+            minlength = 4 
+            maxlength = 8 
+            if(obj.name.length >= minlength && obj.name.length <= maxlength)
+            { 
+              if(obj.password.length >= minlength && obj.password.length <= maxlength)
+              {  	
+                if (obj.password== obj.confirm_password)
+                {
+                 
+
+                      let obj1 ={
+                            name:obj.name,
+                            email:obj.email,
+                            password:obj.password
+                        }
+                
+                        $.ajax({
+                          method:"POST",
+                          url:"http://localhost:3800/formsubmit",
+                          data:obj1,
+                          success:function(data){
+                            if(result.code === 200){
+                              alert(result.message)
+                            }
+                            else{
+                              alert(result.message)
+                            }
+                          },
+                          error:function(){
+                            alert("ERROR")
+                          }
                     })
                   }
                   else{
                     alert("password and confirm password must equal")
                   }
+                  }
+                else
+                  {  	
+	                  alert("Please enter Password between " +minlength+ " and " +maxlength+ " characters");  	
+                  }  
+                }
+            else
+            {  	
+	            alert("Please enter Name between " +minlength+ " and " +maxlength+ " characters");  	
+            }  
           }
           else
           {
@@ -80,7 +104,7 @@
       $(".get").click(function(){
         $.ajax({
           method:"GET",
-          url:"http://localhost:3800/getmethod",
+          url:"http://localhost:3800/getdetails",
           dataType:"json",
         }).done(function(){
           $.each(data,function(i,p){
